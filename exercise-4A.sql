@@ -34,3 +34,13 @@ WHERE reviews.user_id IN
 (SELECT user_relation.follower_id 
 FROM user_relation 
 WHERE user_relation.following_id=1)
+
+/* Using Alias*/
+SELECT r.user_id, r.movie_id, r.ratings, movies.movie_name
+FROM reviews r
+LEFT JOIN movies
+ON r.movie_id = movies.movie_id
+WHERE r.user_id IN
+(SELECT user_relation.follower_id 
+FROM user_relation 
+WHERE user_relation.following_id=1)
